@@ -3,11 +3,11 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Install dependencies first for caching
-COPY requirements.txt .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the backend project files into backend/ inside the container
-COPY . ./backend
+COPY backend/ ./backend
 
 EXPOSE 8000
 
