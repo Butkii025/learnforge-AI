@@ -20,7 +20,7 @@
 [![License](https://img.shields.io/badge/License-MIT-10B981?style=flat-square)](LICENSE)
 [![Kaggle](https://img.shields.io/badge/Kaggle-Capstone%202026-20BEFF?style=flat-square&logo=kaggle&logoColor=white)](https://kaggle.com)
 
-**[Live Demo](https://learnforge.up.railway.app)** · **[Kaggle Writeup](https://kaggle.com)** · **[Video Demo](#)** · **[Report Bug](issues)**
+**[Live Demo](https://learnforge.up.railway.app)** · **[Kaggle Writeup](https://kaggle.com)** 
 
 </div>
 
@@ -32,14 +32,11 @@ LearnForge is a **multi-agent AI study system** built for software engineering s
 
 You choose your engineering track. Four specialist AI agents — Tutor, Quiz, Planner, and Code Review — coordinate through an **orchestrator built with Google ADK** and access tools via a **local MCP server**. The result is a personalised, adaptive study companion that knows what you need to learn next.
 
-> Built for the **Google × Kaggle 5-Day AI Agents: Intensive Vibe Coding Capstone 2026**
-
 ---
 
 ## Table of Contents
 
 - [Architecture](#architecture)
-- [Competition requirements](#competition-requirements)
 - [Agent system](#agent-system)
 - [MCP server and tools](#mcp-server-and-tools)
 - [Engineering tracks](#engineering-tracks)
@@ -50,6 +47,7 @@ You choose your engineering track. Four specialist AI agents — Tutor, Quiz, Pl
 - [Tech stack](#tech-stack)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
+- [Developer](#developer)
 
 ---
 
@@ -126,21 +124,6 @@ Student input
                                       ▼
                               Response streamed back to React UI
 ```
-
----
-
-## Competition requirements
-
-This project demonstrates **all six key concepts** from the 5-Day AI Agents course:
-
-| Requirement | Implementation | Location |
-|---|---|---|
-| **Agent / Multi-agent (ADK)** | Orchestrator + 4 specialist agents built with Google ADK | `backend/agents/` |
-| **MCP Server** | Local Python MCP server exposing 5 tools | `backend/mcp/server.py` |
-| **Antigravity** | Entire project generated and wired via Antigravity CLI agent | Video demo |
-| **Security features** | JWT auth · prompt injection guard · sandboxed execution · rate limiting | `backend/security/` |
-| **Deployability** | Railway.app + GitHub auto-deploy + Docker + one-command local setup | `railway.toml` · `Dockerfile` |
-| **Agent skills (CLI)** | `learnforge-cli` with 4 commands | `cli/learnforge_cli.py` |
 
 ---
 
@@ -440,41 +423,11 @@ GitHub Actions CI
                 │
                 ├── Service 1: Backend
                 │   Dockerfile: backend/Dockerfile
-                │   Port: $PORT (Railway injects)
-                │   Start: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
-                │   URL: https://learnforge-api.up.railway.app
                 │
                 └── Service 2: Frontend
                     Build: npm run build → /dist
                     Serve: railway static site
-                    URL: https://learnforge.up.railway.app
 ```
-
-### Step-by-step Railway setup
-
-```bash
-# 1. Push to GitHub
-git push origin main
-
-# 2. Create Railway project at railway.app → New Project → Deploy from GitHub
-
-# 3. Add Backend service
-#    Root directory: backend
-#    Builder: Dockerfile
-#    Set environment variables in Railway dashboard:
-#      SECRET_KEY, OLLAMA_HOST, DATABASE_URL, CORS_ORIGINS
-
-# 4. Add Frontend service
-#    Root directory: frontend
-#    Build command: npm install && npm run build
-#    Start command: npx serve dist -p $PORT
-
-# 5. Link frontend VITE_API_URL to backend Railway URL
-#    Add to frontend service env: VITE_API_URL=https://your-backend.railway.app
-```
-
-Every push to `main` redeploys both services automatically.
-
 ---
 
 ## Security
@@ -562,6 +515,11 @@ Demonstration ──────────────────────
   Kaggle writeup maps every agent to course concepts.
   Public Railway URL for judges to try live.
 ```
+---
+
+## Screenshots
+
+<img width="1200" height="673" alt="Screenshot 2026-06-26 024228" src="https://github.com/user-attachments/assets/0018bc69-bdef-432b-8670-e53e4c152e65" />
 
 ---
 
@@ -586,10 +544,6 @@ cd frontend && npm install && npm run dev
 
 ---
 
-<div align="center">
-
-Built with the Google × Kaggle Vibe Coding Capstone 2026
-
-**[Live Demo](https://learnforge.up.railway.app)** · **[Kaggle Writeup](#)** · **[Video Demo](#)**
-
-</div>
+## Developer
+* Priynashu Vijay
+* 📝 License [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](/LICENSE)
