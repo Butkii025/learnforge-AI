@@ -565,14 +565,4 @@ cd frontend && npm install && npm run dev
 ## Developer
 * Priynashu Vijay
 * 📝 License [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](/LICENSE)
-#   L e a r n F o r g e - A I - 2 
- 
- #   L e a r n F o r g e - A I - 2 
- 
- #   L e a r n F o r g e 
- 
- #   L e a r n F o r g e 
- 
- #   L e a r n F o r g e 
- 
- 
+#
