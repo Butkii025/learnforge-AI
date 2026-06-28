@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DATABASE_URL=sqlite:///db/progress.db
+      - SECRET_KEY=learnforge_local_dev_secret_key_12345
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - CORS_ORIGINS=http://localhost:3000
+    volumes:
+      - backend_db:/app/db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  backend_db:
