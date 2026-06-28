@@ -17,27 +17,24 @@ def run_code_sandbox(code: str) -> Dict[str, Any]:
     """
     if not code:
         return {"success": False, "output": "Error: No code provided."}
-        
+
     # Check for dangerous modules or functions
     for pattern in DANGEROUS_KEYWORDS:
         if re.search(pattern, code):
-             clean_pattern = pattern.replace(r'\\b', '')
-        
-        return {
-            "success": False,
-            "output": f"Security Error: Execution blocked due to disallowed keyword pattern: '{clean_pattern}'."
-        }
-            
+            clean_pattern = pattern.replace(r'\b', '')   # inside if ✓
+            return {                                       # inside if ✓
+                "success": False,
+                "output": f"Security Error: Execution blocked due to disallowed keyword pattern: '{clean_pattern}'."
+            }
+
     try:
-        # Run code in a separate Python process
-        # Limit CPU time using timeout
         result = subprocess.run(
             [sys.executable, "-c", code],
             capture_output=True,
             text=True,
-            timeout=2.0 # Enforce strict 2-second timeout
+            timeout=2.0
         )
-        
+
         if result.returncode == 0:
             return {
                 "success": True,
@@ -48,7 +45,7 @@ def run_code_sandbox(code: str) -> Dict[str, Any]:
                 "success": False,
                 "output": result.stderr if result.stderr else f"Execution failed with return code {result.returncode}."
             }
-            
+
     except subprocess.TimeoutExpired:
         return {
             "success": False,
