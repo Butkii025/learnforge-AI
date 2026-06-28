@@ -21,11 +21,12 @@ def run_code_sandbox(code: str) -> Dict[str, Any]:
     # Check for dangerous modules or functions
     for pattern in DANGEROUS_KEYWORDS:
         if re.search(pattern, code):
-            clean_pattern = pattern.replace(r'\\b', '')
-            return {
-                "success": False,
-                "output": f"Security Error: Execution blocked due to disallowed keyword pattern: '{pattern.replace(r'\\b', '')}'."
-            }
+        clean_pattern = pattern.replace(r'\\b', '')
+        
+        return {
+            "success": False,
+            "output": f"Security Error: Execution blocked due to disallowed keyword pattern: '{clean_pattern}'."
+        }
             
     try:
         # Run code in a separate Python process
